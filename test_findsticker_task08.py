@@ -22,15 +22,8 @@ def testfindstikers(driver):
     assert elementduck == salestikers_list + newstiker_list
 
     for elduck in range(elementduck):
+        elementduck1 = driver.find_elements_by_xpath("//div[@id='content']//article[@class='product']")[elduck]
+        element2 = len(elementduck1.find_elements_by_xpath(".//div[starts-with(@class, 'sticker')]"))
 
-        try:
-            driver.find_elements_by_xpath("//article[@class='product']//div[starts-with(@class, 'sticker')]")[elduck]
-        except:
-            raise Exception("The article has more than one sticker")
-
-
-
-
-
-
+        assert element2 == 1
 
