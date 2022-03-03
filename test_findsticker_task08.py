@@ -15,15 +15,15 @@ def testfindstikers(driver):
 
     driver.get("http://localhost:82/litecart/")
     elementduck = len(driver.find_elements_by_xpath("//div[@id='content']//article[@class='product']"))
-    salestikers_list = len(driver.find_elements_by_xpath("//article[@class='product']//div[@title='On Sale']"))
-    newstiker_list = len(driver.find_elements_by_xpath("//article[@class='product']//div[@title='New']"))
+    salestikers_value = len(driver.find_elements_by_xpath("//article[@class='product']//div[@title='On Sale']"))
+    newstiker_value = len(driver.find_elements_by_xpath("//article[@class='product']//div[@title='New']"))
 
     #checking if the number of stickers is equal to the number of articles
-    assert elementduck == salestikers_list + newstiker_list
+    assert elementduck == salestikers_value + newstiker_value
 
     for elduck in range(elementduck):
-        elementduck1 = driver.find_elements_by_xpath("//div[@id='content']//article[@class='product']")[elduck]
-        element2 = len(elementduck1.find_elements_by_xpath(".//div[starts-with(@class, 'sticker')]"))
+        elementduckone = driver.find_elements_by_xpath("//div[@id='content']//article[@class='product']")[elduck]
+        element = len(elementduckone.find_elements_by_xpath(".//div[starts-with(@class, 'sticker')]"))
 
-        assert element2 == 1
+        assert element == 1
 
