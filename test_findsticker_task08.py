@@ -13,17 +13,19 @@ def driver(request):
 
 def testfindstikers(driver):
 
-    driver.get("http://localhost:82/litecart/")
-    elementduck = len(driver.find_elements_by_xpath("//div[@id='content']//article[@class='product']"))
-    salestikers_value = len(driver.find_elements_by_xpath("//article[@class='product']//div[@title='On Sale']"))
-    newstiker_value = len(driver.find_elements_by_xpath("//article[@class='product']//div[@title='New']"))
+    driver.get("http://localhost:1234/litecart/")
+    elementduck = len(driver.find_elements_by_xpath("//div[@class='content']//li[@class='product column shadow hover-light']"))
+    salestikers_list = len(driver.find_elements_by_xpath("//li[@class='product column shadow hover-light']//div[@title='On Sale']"))
+    newstiker_list = len(driver.find_elements_by_xpath("//li[@class='product column shadow hover-light']//div[@title='New']"))
 
     #checking if the number of stickers is equal to the number of articles
-    assert elementduck == salestikers_value + newstiker_value
+    assert elementduck == salestikers_list + newstiker_list
 
     for elduck in range(elementduck):
-        elementduckone = driver.find_elements_by_xpath("//div[@id='content']//article[@class='product']")[elduck]
-        element = len(elementduckone.find_elements_by_xpath(".//div[starts-with(@class, 'sticker')]"))
+        elementduck1 = driver.find_elements_by_xpath("//div[@class='content']//div[@class='image-wrapper']")[elduck]
+        element2 = len(elementduck1.find_elements_by_xpath(".//div[starts-with(@class, 'sticker')]"))
 
-        assert element == 1
+        assert element2 == 1
+
+
 
