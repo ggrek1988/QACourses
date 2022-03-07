@@ -3,24 +3,27 @@ from selenium import  webdriver
 from selenium.webdriver.chrome.service import Service
 
 
-@pytest.fixture(scope="session", autouse=True)
+@pytest.fixture #(scope="session", autouse=True)
 def driver(request):
     ser = Service("C:\\driver_firefox_selenium\\geckodriver.exe")
     op = webdriver.FirefoxOptions()
     wd = webdriver.Firefox(service=ser, options=op)
+
+
+    wd.get("http://localhost:1234/litecart/admin/")
+
+    wd.find_element_by_xpath("//input[@name='username']").send_keys("Admin")
+    wd.find_element_by_xpath("//input[@name='password']").send_keys("admin")
+    wd.find_element_by_xpath("//button[@name='login']").click()
+    wd.implicitly_wait(5)
+
     request.addfinalizer(wd.quit)
     return wd
 
-def test_LoginAdmin(driver):
 
-    driver.get("http://localhost:1234/litecart/admin/")
 
-    driver.find_element_by_xpath("//input[@name='username']").send_keys("Admin")
-    driver.find_element_by_xpath("//input[@name='password']").send_keys("admin")
-    driver.find_element_by_xpath("//button[@name='login']").click()
-    driver.implicitly_wait(5)
 
-#@pytest.mark.skip
+@pytest.mark.skip
 def test_search_menu_items_example1(driver):
 
 
