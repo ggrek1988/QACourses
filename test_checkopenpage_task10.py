@@ -28,14 +28,12 @@ def test_checkopenware(driver):
     textcampaign_price = campaign_price.text
 
     #check style price
-    colorproce = regular_price.value_of_css_property('color')
-    print(colorproce)
-    campaign = campaign_price.value_of_css_property('color')
-    print(campaign)
+    page1_colorprice = regular_price.value_of_css_property('color')
+    page1_text_decoration = regular_price.value_of_css_property('text-decoration')
 
-    # check tag name
-    print(regular_price.tag_name)
-    print(campaign_price.tag_name)
+    page1_colorcampaign = campaign_price.value_of_css_property('color')
+    page1_colorcampaign_text_decoration = campaign_price.value_of_css_property('text-decoration')
+
 
     #CLICK PRODUCT
     driver.find_element_by_css_selector("div#box-campaigns a.link").click()
@@ -45,14 +43,12 @@ def test_checkopenware(driver):
     campaign_priceproduct = driver.find_element_by_css_selector("strong.campaign-price")
 
     # check style price
-    colorproce = regular_priceproduct.value_of_css_property('color')
-    print(colorproce)
-    campaign = campaign_priceproduct.value_of_css_property('color')
-    print(campaign)
+    page2_colorprice = regular_priceproduct.value_of_css_property('color')
+    page2_text_decoration = regular_priceproduct.value_of_css_property('text-decoration')
+   
+    page2_colorcampaign = campaign_priceproduct.value_of_css_property('color')
+    page2_colorcampaign_text_decoration = campaign_priceproduct.value_of_css_property('text-decoration')
 
-    #check tag name
-    print(regular_priceproduct.tag_name)
-    print(campaign_priceproduct.tag_name)
 
 
 
@@ -64,5 +60,35 @@ def test_checkopenware(driver):
 
     # check campaign price
     assert textcampaign_price == campaign_priceproduct.text
+
+    #check style $20
+    #text
+    if page1_text_decoration == page2_text_decoration:
+        assert True
+    else:
+        print("Styl is not equal value $20")
+
+    #color
+    if page1_colorprice == page2_colorprice:
+        assert True
+    else:
+        print("Styl color is not equal value $20")
+
+    # check style $18
+    # text
+    if page1_colorcampaign == page2_colorcampaign:
+         assert True
+    else:
+        print("Styl is not equal value $18")
+
+        # color
+    if page1_colorcampaign_text_decoration == page2_colorcampaign_text_decoration:
+        assert True
+    else:
+        print("Styl color is not equal value $18")
+
+
+
+
 
 
