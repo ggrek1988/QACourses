@@ -30,10 +30,11 @@ def test_checkopenware(driver):
     #check style price
     page1_colorprice = regular_price.value_of_css_property('color')
     page1_text_decoration = regular_price.value_of_css_property('text-decoration')
+    page1_tag_name = regular_price.tag_name
 
     page1_colorcampaign = campaign_price.value_of_css_property('color')
-    page1_colorcampaign_text_decoration = campaign_price.value_of_css_property('text-decoration')
-
+    page1_campaign_text_decoration = campaign_price.value_of_css_property('text-decoration')
+    page1_campaign_tag_name = campaign_price.tag_name
 
     #CLICK PRODUCT
     driver.find_element_by_css_selector("div#box-campaigns a.link").click()
@@ -45,10 +46,11 @@ def test_checkopenware(driver):
     # check style price
     page2_colorprice = regular_priceproduct.value_of_css_property('color')
     page2_text_decoration = regular_priceproduct.value_of_css_property('text-decoration')
-   
-    page2_colorcampaign = campaign_priceproduct.value_of_css_property('color')
-    page2_colorcampaign_text_decoration = campaign_priceproduct.value_of_css_property('text-decoration')
+    page2_tag_name = regular_priceproduct.tag_name
 
+    page2_colorcampaign = campaign_priceproduct.value_of_css_property('color')
+    page2_campaign_text_decoration = campaign_priceproduct.value_of_css_property('text-decoration')
+    page2_campaign_tag_name = campaign_priceproduct.tag_name
 
 
 
@@ -60,6 +62,10 @@ def test_checkopenware(driver):
 
     # check campaign price
     assert textcampaign_price == campaign_priceproduct.text
+
+    #check tag name
+    assert  page1_tag_name == page2_tag_name
+    assert  page1_campaign_tag_name == page2_campaign_tag_name
 
     #check style $20
     #text
@@ -82,7 +88,7 @@ def test_checkopenware(driver):
         print("Styl is not equal value $18")
 
         # color
-    if page1_colorcampaign_text_decoration == page2_colorcampaign_text_decoration:
+    if page1_campaign_text_decoration == page2_campaign_text_decoration:
         assert True
     else:
         print("Styl color is not equal value $18")
