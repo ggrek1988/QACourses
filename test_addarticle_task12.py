@@ -18,7 +18,7 @@ def driver(request):
     wd.find_element_by_xpath("//button[@name='login']").click()
     wd.implicitly_wait(5)
     #close windows
-    #request.addfinalizer(wd.quit)
+    request.addfinalizer(wd.quit)
     return wd
 
 #@pytest.mark.skip
