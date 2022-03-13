@@ -11,7 +11,7 @@ def driver(request):
     wd = webdriver.Firefox(service=ser, options=op)
 
     #close windows
-    #request.addfinalizer(wd.quit)
+    request.addfinalizer(wd.quit)
     return wd
 
 
