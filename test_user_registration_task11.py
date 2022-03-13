@@ -2,6 +2,7 @@ from selenium import webdriver
 import pytest
 from selenium.webdriver.chrome.service import Service
 from faker import Faker
+from selenium.webdriver.common.keys import Keys
 
 
 @pytest.fixture
@@ -11,7 +12,7 @@ def driver(request):
     wd = webdriver.Firefox(service=ser, options=op)
 
     #close windows
-    request.addfinalizer(wd.quit)
+    #request.addfinalizer(wd.quit)
     return wd
 
 
@@ -25,6 +26,11 @@ def test_userregistration(driver):
     driver.find_element_by_css_selector("[name='address1']").send_keys(faker.street_address())
     driver.find_element_by_css_selector("[name='postcode']").send_keys('22-222')
     driver.find_element_by_css_selector("[name='city']").send_keys(faker.city())
+    
+    # Country
+    driver.find_element_by_xpath("//span[@class='select2-selection select2-selection--single']").click()
+    driver.find_element_by_xpath("//input[@role = 'textbox']").send_keys("Poland", Keys.ENTER)
+    
     email = faker.email()
     driver.find_element_by_css_selector("[name='email']").send_keys(str(email))
     driver.find_element_by_css_selector("[name='phone']").send_keys('12345678')
@@ -46,18 +52,3 @@ def test_userregistration(driver):
     driver.find_element_by_xpath("//input[@name='password']").send_keys(str(password))
     driver.find_element_by_xpath("//button[@name='login']").click()
     driver.find_element_by_xpath("//div[@class='content']//a[contains(text(),'Logout')]").click()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
