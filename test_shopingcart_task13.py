@@ -46,15 +46,12 @@ def test_shopcart(driver):
         waitindex += 1
 
     driver.find_element_by_css_selector("div[id='cart'] a[class='link']").click()
-
+    shortcut = len(driver.find_elements_by_css_selector("li.shortcut"))
     #delete products
-    for el in range(3):
+    for el in range(shortcut):
 
         name = driver.find_elements_by_xpath("//div[@class='viewport']//a")[1].get_attribute('textContent')
         driver.find_element_by_xpath("//button[@name='remove_cart_item']").click()
         # wait
         wait.until(EC.invisibility_of_element_located((By.XPATH,"//table[@class='dataTable rounded-corners']//td[text()='"+str(name)+"']")))
-
-
-
 
