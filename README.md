@@ -1,6 +1,6 @@
 # QACourses
 
-This is a project with my solution of some proposed exercises from http://localhost:1234/litecart/
+This is a project with my solution of some proposed exercises from litecart
 
 http://www.softaculous.com/apps/ecommerce/litecart
 
